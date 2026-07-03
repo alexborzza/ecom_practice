@@ -19,7 +19,6 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    // Don't leak sensitive details in production; log instead of echoing $e->getMessage()
     http_response_code(500);
     header('Content-Type: application/json');
     echo json_encode([
