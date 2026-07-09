@@ -1,14 +1,9 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+require __DIR__ . '/cors.php';
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
+header('Content-Type: application/json');
 
 require __DIR__ . '/db.php';
 
@@ -76,17 +71,19 @@ try {
         ];
     }
 
+    $userId = $_SESSION['user_id'] ?? null;
+
     $orderStmt = $pdo->prepare(
         'INSERT INTO orders (user_id, customer_name, customer_address, customer_phone, total, status)
-         VALUES (NULL, :name, :address, :phone, :total, :status)'
+         VALUES (:user_id, :name, :address, :phone, :total, :status)'
     );
-    $orderStmt->execute([
-        ':name'    => $name,
-        ':address' => $address,
-        ':phone'   => $phone,
-        ':total'   => $total,
-        ':status'  => 'pending',
-    ]);
+    $orderStmt->bindValue(':user_id', $userId, $userId === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
+    $orderStmt->bindValue(':name', $name);
+    $orderStmt->bindValue(':address', $address);
+    $orderStmt->bindValue(':phone', $phone);
+    $orderStmt->bindValue(':total', $total);
+    $orderStmt->bindValue(':status', 'pending');
+    $orderStmt->execute();
 
     $orderId = (int) $pdo->lastInsertId();
 

@@ -130,8 +130,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .cart-badge-wrapper {
@@ -411,14 +409,7 @@
 .header-right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-left: auto;
-}
-
-.header-divider {
-  width: 1px;
-  height: 24px;
-  background: #555;
+  gap: 1rem;
 }
 
 .auth-links {
