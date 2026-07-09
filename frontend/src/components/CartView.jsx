@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function CartView() {
   const { items, updateQuantity, removeFromCart, totalPrice } = useCart();
+  const navigate = useNavigate();
 
   if (items.length === 0) {
     return <p className="cart-empty">Your cart is empty.</p>;
@@ -54,6 +56,13 @@ function CartView() {
       <div className="cart-total">
         <strong>Total: {totalPrice.toFixed(2)} lei</strong>
       </div>
+
+      <button
+        className="product-button cart-checkout-button"
+        onClick={() => navigate("/checkout")}
+      >
+        Checkout
+      </button>
     </div>
   );
 }
