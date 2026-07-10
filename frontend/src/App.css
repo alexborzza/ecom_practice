@@ -472,3 +472,95 @@
   color: #dd5046;
   font-weight: 600;
 }
+
+.admin-link {
+  color: #dd5046;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #dd5046;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+}
+
+.admin-link:hover {
+  background: #dd5046;
+  color: #fff;
+}
+
+.admin {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  text-align: left;
+}
+
+.admin-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.admin-add-button {
+  width: auto;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #ddd;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid #555;
+}
+
+.admin-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.admin-actions {
+  white-space: nowrap;
+}
+
+.admin-actions a {
+  color: #dd5046;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.admin-delete-button {
+  background: none;
+  border: none;
+  color: #dd5046;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.admin-delete-button:hover {
+  text-decoration: underline;
+}
+
+.admin-actions a:hover {
+  text-decoration: underline;
+}
+
+.checkout-label select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #3d3c3c;
+  color: #ddd;
+  font-size: 0.95rem;
+}

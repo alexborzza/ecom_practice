@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/cors.php';
+require __DIR__ . '/../includes/cors.php';
 session_start();
 
 header('Content-Type: application/json');
@@ -10,10 +10,10 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-require __DIR__ . '/db.php';
+require __DIR__ . '/../includes/db.php';
 
 try {
-    $stmt = $pdo->prepare('SELECT id, name, email FROM users WHERE id = :id LIMIT 1');
+    $stmt = $pdo->prepare('SELECT id, name, email, role FROM users WHERE id = :id LIMIT 1');
     $stmt->execute([':id' => $_SESSION['user_id']]);
     $user = $stmt->fetch();
 

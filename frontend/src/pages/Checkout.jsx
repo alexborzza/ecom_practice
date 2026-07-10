@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 
 // Adjust this to match where your PHP backend is served from
-const API_URL = "http://localhost:8000/order.php";
+const API_URL = "http://localhost:8000/orders/order.php";
 
 function Checkout() {
   const { items, totalPrice, clearCart } = useCart();

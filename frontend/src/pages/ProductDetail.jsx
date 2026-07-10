@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 
-const API_URL = "http://localhost:8000/product.php";
+// Adjust this to match where your PHP backend is served from
+const API_URL = "http://localhost:8000/products/product.php";
 
 function ProductDetail() {
   const { id } = useParams();

@@ -14,6 +14,11 @@ function Header() {
       <div className="header-right">
         {user ? (
           <div className="auth-status">
+            {user.role === "admin" && (
+              <Link to="/admin" className="admin-link">
+                Admin
+              </Link>
+            )}
             <span>Hi, {user.name}</span>
             <button className="auth-logout-button" onClick={logout}>
               Logout

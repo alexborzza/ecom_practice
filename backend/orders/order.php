@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__ . '/cors.php';
+require __DIR__ . '/../includes/cors.php';
 session_start();
 
 header('Content-Type: application/json');
 
-require __DIR__ . '/db.php';
+require __DIR__ . '/../includes/db.php';
 
 $input = json_decode(file_get_contents('php://input'), true);
 

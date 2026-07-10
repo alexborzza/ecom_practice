@@ -3,10 +3,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext(null);
 
 // Adjust these to match where your PHP backend is served from
-const ME_URL = "http://localhost:8000/me.php";
-const LOGIN_URL = "http://localhost:8000/login.php";
-const REGISTER_URL = "http://localhost:8000/register.php";
-const LOGOUT_URL = "http://localhost:8000/logout.php";
+const ME_URL = "http://localhost:8000/auth/me.php";
+const LOGIN_URL = "http://localhost:8000/auth/login.php";
+const REGISTER_URL = "http://localhost:8000/auth/register.php";
+const LOGOUT_URL = "http://localhost:8000/auth/logout.php";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

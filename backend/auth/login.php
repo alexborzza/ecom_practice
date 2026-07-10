@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__ . '/cors.php';
+require __DIR__ . '/../includes/cors.php';
 session_start();
 
 header('Content-Type: application/json');
 
-require __DIR__ . '/db.php';
+require __DIR__ . '/../includes/db.php';
 
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -34,7 +34,12 @@ try {
 
     echo json_encode([
         'success' => true,
-        'user'    => ['id' => $user['id'], 'name' => $user['name'], 'email' => $user['email']],
+        'user'    => [
+            'id'    => $user['id'],
+            'name'  => $user['name'],
+            'email' => $user['email'],
+            'role'  => $user['role'],
+        ],
     ]);
 } catch (PDOException $e) {
     http_response_code(500);

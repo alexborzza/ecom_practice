@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 
 // Adjust this to match where your PHP backend is served from
-const API_URL = "http://localhost:8000/products.php";
+const API_URL = "http://localhost:8000/products/products.php";
 
 function ProductList() {
   const [products, setProducts] = useState([]);

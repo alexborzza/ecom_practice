@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/cors.php';
+require __DIR__ . '/../includes/cors.php';
 session_start();
 
 header('Content-Type: application/json');
