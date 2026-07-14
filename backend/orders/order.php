@@ -7,6 +7,12 @@ header('Content-Type: application/json');
 
 require __DIR__ . '/../includes/db.php';
 
+if (empty($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'error' => 'You must be logged in to place an order']);
+    exit;
+}
+
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (!$input) {

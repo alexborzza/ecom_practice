@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminProductForm from "./pages/admin/AdminProductForm";
 import AdminRoute from "./components/AdminRoute";
+import RequireAuth from "./components/RequireAuth";
 import "./App.css";
 
 import { CartProvider } from "./context/CartContext";
@@ -20,7 +21,14 @@ function App() {
           <Routes>
             <Route path="/" element={<ProductList />} />
             <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/checkout"
+              element={
+                <RequireAuth>
+                  <Checkout />
+                </RequireAuth>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
