@@ -52,13 +52,19 @@ try {
             throw new Exception('Quantity must be greater than zero');
         }
 
-        $stmt = $pdo->prepare('SELECT price FROM products WHERE id = :id LIMIT 1');
+        // FOR UPDATE locks the row so two simultaneous orders can't both
+        // oversell the same remaining stock.
+        $stmt = $pdo->prepare('SELECT price, stock FROM products WHERE id = :id LIMIT 1 FOR UPDATE');
         $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
         $stmt->execute();
         $product = $stmt->fetch();
 
         if (!$product) {
             throw new Exception("Product {$productId} not found");
+        }
+
+        if ($quantity > (int) $product['stock']) {
+            throw new Exception("Not enough stock for product {$productId} (requested {$quantity}, available {$product['stock']})");
         }
 
         $price = (float) $product['price'];
@@ -92,12 +98,21 @@ try {
          VALUES (:order_id, :product_id, :quantity, :price)'
     );
 
+    $stockStmt = $pdo->prepare(
+        'UPDATE products SET stock = stock - :quantity WHERE id = :product_id'
+    );
+
     foreach ($validatedItems as $item) {
         $itemStmt->execute([
             ':order_id'   => $orderId,
             ':product_id' => $item['product_id'],
             ':quantity'   => $item['quantity'],
             ':price'      => $item['price'],
+        ]);
+
+        $stockStmt->execute([
+            ':quantity'   => $item['quantity'],
+            ':product_id' => $item['product_id'],
         ]);
     }
 
