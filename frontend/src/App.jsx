@@ -9,6 +9,7 @@ import AdminProductForm from "./pages/admin/AdminProductForm";
 import AdminRoute from "./components/AdminRoute";
 import RequireAuth from "./components/RequireAuth";
 import CartToast from "./components/CartToast";
+import Footer from "./components/Footer";
 import "./App.css";
 
 import { CartProvider } from "./context/CartContext";
@@ -59,6 +60,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </div>
       </CartProvider>
     </AuthProvider>

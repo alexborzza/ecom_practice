@@ -635,3 +635,12 @@
   color: #ddd;
   font-size: 0.95rem;
 }
+
+.footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85rem;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+}
