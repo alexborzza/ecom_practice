@@ -27,7 +27,10 @@ function CartView() {
           </div>
 
           <div className="cart-item-controls-row">
-            <p className="cart-item-price">{item.price} lei each</p>
+            <div>
+              <p className="cart-item-price">{item.price} lei each</p>
+              <p className="cart-item-stock">{item.stock} in stock</p>
+            </div>
 
             <div className="cart-item-quantity">
               <button

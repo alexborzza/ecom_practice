@@ -8,6 +8,7 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import AdminProductForm from "./pages/admin/AdminProductForm";
 import AdminRoute from "./components/AdminRoute";
 import RequireAuth from "./components/RequireAuth";
+import CartToast from "./components/CartToast";
 import "./App.css";
 
 import { CartProvider } from "./context/CartContext";
@@ -18,6 +19,7 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <div className="app">
+          <CartToast />
           <Routes>
             <Route path="/" element={<ProductList />} />
             <Route path="/product/:id" element={<ProductDetail />} />

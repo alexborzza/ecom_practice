@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-function ProductCard({ id, name, price, image_url, description }) {
+function ProductCard({ id, name, price, image_url, description, stock }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -11,7 +11,7 @@ function ProductCard({ id, name, price, image_url, description }) {
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    addToCart({ id, name, price, image_url });
+    addToCart({ id, name, price, image_url, stock });
   };
 
   return (
@@ -20,8 +20,12 @@ function ProductCard({ id, name, price, image_url, description }) {
       <h3 className="product-name">{name}</h3>
       <p className="product-description">{description}</p>
       <p className="product-price">{price} lei</p>
-      <button className="product-button" onClick={handleAddToCart}>
-        Add to cart
+      <button
+        className="product-button"
+        onClick={handleAddToCart}
+        disabled={stock <= 0}
+      >
+        {stock <= 0 ? "Out of stock" : "Add to cart"}
       </button>
     </div>
   );

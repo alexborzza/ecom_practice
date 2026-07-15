@@ -44,6 +44,7 @@ function ProductDetail() {
       name: product.name,
       price: product.price,
       image_url: product.image_url,
+      stock: product.stock,
     });
   };
 

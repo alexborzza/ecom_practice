@@ -3,16 +3,25 @@ import { createContext, useContext, useReducer } from "react";
 const CartContext = createContext(null);
 
 const initialState = {
-  items: [], // { id, name, price, image_url, quantity }
+  items: [], // { id, name, price, image_url, stock, quantity }
+  message: null,
 };
 
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM": {
       const product = action.payload;
+      const stock = Number(product.stock ?? 0);
       const existing = state.items.find((item) => item.id === product.id);
 
       if (existing) {
+        if (existing.quantity >= stock) {
+          return {
+            ...state,
+            message: `Only ${stock} ${product.name} in stock.`,
+          };
+        }
+
         return {
           ...state,
           items: state.items.map((item) =>
@@ -20,12 +29,21 @@ function cartReducer(state, action) {
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
+          message: null,
+        };
+      }
+
+      if (stock <= 0) {
+        return {
+          ...state,
+          message: `${product.name} is out of stock.`,
         };
       }
 
       return {
         ...state,
-        items: [...state.items, { ...product, quantity: 1 }],
+        items: [...state.items, { ...product, stock, quantity: 1 }],
+        message: null,
       };
     }
 
@@ -46,16 +64,31 @@ function cartReducer(state, action) {
         };
       }
 
+      const item = state.items.find((i) => i.id === id);
+
+      if (item && quantity > item.stock) {
+        return {
+          ...state,
+          items: state.items.map((i) =>
+            i.id === id ? { ...i, quantity: i.stock } : i
+          ),
+          message: `Only ${item.stock} ${item.name} in stock.`,
+        };
+      }
+
       return {
         ...state,
-        items: state.items.map((item) =>
-          item.id === id ? { ...item, quantity } : item
-        ),
+        items: state.items.map((i) => (i.id === id ? { ...i, quantity } : i)),
+        message: null,
       };
     }
 
     case "CLEAR_CART": {
       return { ...state, items: [] };
+    }
+
+    case "CLEAR_MESSAGE": {
+      return { ...state, message: null };
     }
 
     default:
@@ -82,6 +115,10 @@ export function CartProvider({ children }) {
     dispatch({ type: "CLEAR_CART" });
   };
 
+  const clearMessage = () => {
+    dispatch({ type: "CLEAR_MESSAGE" });
+  };
+
   const totalItems = state.items.reduce(
     (sum, item) => sum + item.quantity,
     0
@@ -94,6 +131,8 @@ export function CartProvider({ children }) {
 
   const value = {
     items: state.items,
+    message: state.message,
+    clearMessage,
     addToCart,
     removeFromCart,
     updateQuantity,

@@ -51,6 +51,7 @@ function ProductList() {
               price={Number(product.price)}
               image_url={product.image_url}
               description={product.description}
+              stock={Number(product.stock)}
             />
           ))}
       </main>
