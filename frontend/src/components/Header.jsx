@@ -19,6 +19,9 @@ function Header() {
                 Admin
               </Link>
             )}
+            <Link to="/orders" className="admin-link">
+              Order History
+            </Link>
             <span>Hi, {user.name}</span>
             <button className="auth-logout-button" onClick={logout}>
               Logout

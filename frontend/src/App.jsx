@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
+import OrderHistory from "./pages/OrderHistory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -29,6 +30,14 @@ function App() {
               element={
                 <RequireAuth>
                   <Checkout />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <RequireAuth>
+                  <OrderHistory />
                 </RequireAuth>
               }
             />

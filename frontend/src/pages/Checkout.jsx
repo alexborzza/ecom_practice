@@ -146,6 +146,11 @@ function Checkout() {
                 />
               </label>
 
+              <div className="checkout-label">
+                Payment method
+                <p className="checkout-payment-method">Cash upon shipping</p>
+              </div>
+
               {error && <p className="checkout-error">{error}</p>}
 
               <button

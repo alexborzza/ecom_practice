@@ -461,6 +461,17 @@
   border-color: #dd5046;
 }
 
+.checkout-payment-method {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #333;
+  color: #ddd;
+  font-weight: normal;
+  font-size: 0.95rem;
+}
+
 .checkout-error {
   color: #dd5046;
   font-weight: 600;
@@ -643,4 +654,79 @@
   padding: 1.5rem 0;
   margin-top: 2rem;
   border-top: 1px solid #ddd;
+}
+
+.order-history {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  text-align: left;
+}
+
+.order-history h2 {
+  color: #ddd;
+}
+
+.order-card {
+  border: 1px solid #555;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background: #3d3c3c;
+}
+
+.order-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #555;
+}
+
+.order-card-id {
+  margin: 0;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.order-card-date {
+  margin: 0.2rem 0 0;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+.order-card-status {
+  text-transform: capitalize;
+  color: #dd5046;
+  font-weight: 600;
+  border: 1px solid #dd5046;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  height: fit-content;
+}
+
+.order-shipping {
+  color: #ddd;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #555;
+}
+
+.order-shipping p {
+  margin: 0.2rem 0;
+}
+
+.order-items {
+  margin-bottom: 0.75rem;
+}
+
+.order-card-total {
+  display: flex;
+  justify-content: flex-end;
+  color: #ddd;
+  padding-top: 0.75rem;
+  border-top: 1px solid #555;
 }
